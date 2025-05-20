@@ -7,8 +7,6 @@ function validate(lines) {
   let prevLineWasConditional = false;
 
   for (const line of lines) {
-    console.log("lineIndex: " + lineIndex);
-
     // Skip empty lines
     if (line.trim() === "") {
       continue;
