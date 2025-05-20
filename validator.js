@@ -20,7 +20,10 @@ function validate(lines) {
     // Rule 1: First line is not indented
     if (lineIndex === 0 && indentation !== 0) {
       console.log("failed Rule 1");
-      return false;
+      return {
+        success: false,
+        lineIndex: lineIndex,
+      };
     }
 
     // Check if the line is a conditional statement
@@ -41,7 +44,10 @@ function validate(lines) {
       // Check if current indentation matches any valid indentation level
       if (!indentationStack.includes(indentation)) {
         console.log("failed Rule 3B");
-        return false; // Rule 3B
+        return {
+          success: false,
+          lineIndex: lineIndex,
+        }; // Rule 3B
       } else {
         rule3b = true;
       }
@@ -60,14 +66,20 @@ function validate(lines) {
         );
 
         console.log("failed Rule 3A");
-        return false;
+        return {
+          success: false,
+          lineIndex: lineIndex,
+        };
       }
     }
 
     // Rule 2: Line after conditional statement should be further indented at least by 1 space
     if (prevLineWasConditional && indentation <= prevLineIndentation) {
       console.log("failed Rule 2");
-      return false;
+      return {
+        success: false,
+        lineIndex: lineIndex,
+      };
     }
 
     // Update the stack if this is the first line of a new block
@@ -81,12 +93,17 @@ function validate(lines) {
     lineIndex++;
   }
 
-  return true;
+  return {
+    success: true,
+    lineIndex: lineIndex,
+  };
 }
 
+function lineAfterNonConditional() {}
+
 function main() {
-  // Example Python code lines - invalid
   const pythonLines = [
+    "",
     'print("Hello!")',
     'if s == "music":',
     '    print("Dance now!")',
@@ -103,11 +120,7 @@ function main() {
 
   const result = validate(pythonLines);
 
-  if (result) {
-    console.log("valid!");
-  } else {
-    console.log("invalid!");
-  }
+  console.log("Result: ", result);
 }
 
 main();
