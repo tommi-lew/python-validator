@@ -21,6 +21,7 @@ function validate(lines) {
         success: false,
         lineIndex: lineIndex,
         rule: "1",
+        line: lineIndex,
       };
     }
 
@@ -45,6 +46,7 @@ function validate(lines) {
           success: false,
           lineIndex: lineIndex,
           rule: "3B",
+          line: lineIndex,
         }; // Rule 3B
       } else {
         rule3b = true;
@@ -61,6 +63,7 @@ function validate(lines) {
           success: false,
           lineIndex: lineIndex,
           rule: "3A",
+          line: lineIndex,
         };
       }
     }
@@ -71,6 +74,7 @@ function validate(lines) {
         success: false,
         lineIndex: lineIndex,
         rule: "2",
+        line: lineIndex,
       };
     }
 
