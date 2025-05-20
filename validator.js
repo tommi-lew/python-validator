@@ -93,8 +93,6 @@ function validate(lines) {
   };
 }
 
-function lineAfterNonConditional() {}
-
 function main() {
   const pythonLines = [
     "",
