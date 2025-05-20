@@ -115,11 +115,7 @@ function main() {
     'print("Goodbye!")',
   ];
 
-  // Example Python code lines - valid
-  // const pythonLines = [];
-
   const result = validate(pythonLines);
-
   console.log("Result: ", result);
 }
 
