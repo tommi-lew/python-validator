@@ -19,10 +19,10 @@ function validate(lines) {
 
     // Rule 1: First line is not indented
     if (lineIndex === 0 && indentation !== 0) {
-      console.log("failed Rule 1");
       return {
         success: false,
         lineIndex: lineIndex,
+        rule: "1",
       };
     }
 
@@ -43,10 +43,10 @@ function validate(lines) {
 
       // Check if current indentation matches any valid indentation level
       if (!indentationStack.includes(indentation)) {
-        console.log("failed Rule 3B");
         return {
           success: false,
           lineIndex: lineIndex,
+          rule: "3B",
         }; // Rule 3B
       } else {
         rule3b = true;
@@ -59,26 +59,20 @@ function validate(lines) {
         !prevLineWasConditional &&
         indentation !== prevLineIndentation
       ) {
-        console.log("!prevLineWasConditional: " + !prevLineWasConditional);
-        console.log(
-          "indentation !== prevLineIndentation: " +
-            (indentation !== prevLineIndentation)
-        );
-
-        console.log("failed Rule 3A");
         return {
           success: false,
           lineIndex: lineIndex,
+          rule: "3A",
         };
       }
     }
 
     // Rule 2: Line after conditional statement should be further indented at least by 1 space
     if (prevLineWasConditional && indentation <= prevLineIndentation) {
-      console.log("failed Rule 2");
       return {
         success: false,
         lineIndex: lineIndex,
+        rule: "2",
       };
     }
 
